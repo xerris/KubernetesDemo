@@ -10,24 +10,17 @@ namespace KubernetesDemo
     {
         public SpotFleetWorkerGroup(Construct scope, string id, Cluster cluster) : base(scope, id)
         {
-            //m5n.large
+            //m5d.large
             const string instanceType = "m5d.large";
             var listPrice = new decimal(0.113);
             var discount = new decimal(0.70);
 
-            //t3 medium - 0.041600 hourly
-            // const string instanceType = "t3.medium";
-            // var listPrice  = new decimal(0.041600);
 
             //Get current price listed at https://www.ec2instances.info/?selected=t3.large
-            //const string instanceType = "t3.large";
-            //var listPrice = new decimal(0.083200);
-            //var discount = new decimal(0.50);
+
             var spotPrice = listPrice - listPrice * discount;
             var finalSpotPrice = spotPrice.ToString(CultureInfo.InvariantCulture);
-            Console.WriteLine($"List Price: {listPrice}");
-            Console.WriteLine($"Discount: {discount * 100}%");
-            Console.WriteLine($"Spot Price: {finalSpotPrice}");
+      
 
             var spotFleet = cluster.AddAutoScalingGroupCapacity($"{id}-spot", new AutoScalingGroupCapacityOptions
             {

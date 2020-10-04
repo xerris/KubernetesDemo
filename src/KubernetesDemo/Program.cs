@@ -11,17 +11,17 @@ namespace KubernetesDemo
         {
             var app = new App();
 
-            CreateHungrrStack(app, DeploymentEnvironment.Sandbox);
-            CreateHungrrStack(app, DeploymentEnvironment.Dev);
-            CreateHungrrStack(app, DeploymentEnvironment.Stage);
-            CreateHungrrStack(app, DeploymentEnvironment.Prod);
+            CreateDemoStack(app, DeploymentEnvironment.Sandbox);
+            CreateDemoStack(app, DeploymentEnvironment.Dev);
+            CreateDemoStack(app, DeploymentEnvironment.Stage);
+            CreateDemoStack(app, DeploymentEnvironment.Prod);
 
             app.Synth();
         }
-        private static void CreateHungrrStack(App app, DeploymentEnvironment env)
+        private static void CreateDemoStack(App app, DeploymentEnvironment env)
         {
             var stackName = $"{env.ToString().ToLower()}-demo";
-            var kube = new XerrisHungrrStack(app, stackName, env,
+            var kube = new DemoStack(app, stackName, env,
                 new StackProps
                 {
                     StackName = stackName,
@@ -41,7 +41,6 @@ namespace KubernetesDemo
                     }
                 });
 
-            //new HelloServiceStack(app, $"{env.ToString().ToLower()}-hungrr", env);
         }
     }
 }

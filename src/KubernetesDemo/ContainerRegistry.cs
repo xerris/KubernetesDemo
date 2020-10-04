@@ -11,7 +11,7 @@ namespace KubernetesDemo
         public Repository Registry { get; set; }
         public ContainerRegistry(Construct scope, string id, DeploymentEnvironment env) : base(scope, id)
         {
-            var repositoryName = $"hungrr-{env.ToString().ToLower()}";
+            var repositoryName = $"demo-{env.ToString().ToLower()}";
             Registry = new Repository(this, repositoryName, new RepositoryProps
             {
                 RepositoryName = repositoryName,

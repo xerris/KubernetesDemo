@@ -3,11 +3,11 @@ using Amazon.CDK.AWS.EC2;
 
 namespace KubernetesDemo
 {
-    public class XerrisHungrrStack : Amazon.CDK.Stack
+    public class DemoStack : Amazon.CDK.Stack
     {
         public readonly Vpc Vpc;
 
-        internal XerrisHungrrStack(Construct scope, string id, DeploymentEnvironment env, IStackProps props = null) :
+        internal DemoStack(Construct scope, string id, DeploymentEnvironment env, IStackProps props = null) :
             base(scope, id, props)
         {
             //network
@@ -15,7 +15,7 @@ namespace KubernetesDemo
 
             //Kubernetes 
             var ecr = new ContainerRegistry(this, $"{id}-container-registry", env);
-            var k8 = new KubernetesCluster(this, $"{id}-cluster", Vpc);
+            var k8 = new KubernetesCluster(this, $"{id}-cluster", Vpc, "democluster");
 
             //if (env == DeploymentEnvironment.Dev || env == DeploymentEnvironment.Sandbox)
             //{
