@@ -11,9 +11,7 @@ namespace KubernetesDemo
         {
             var app = new App();
 
-            CreateDemoStack(app, DeploymentEnvironment.Sandbox);
             CreateDemoStack(app, DeploymentEnvironment.Dev);
-            CreateDemoStack(app, DeploymentEnvironment.Stage);
             CreateDemoStack(app, DeploymentEnvironment.Prod);
 
             app.Synth();
